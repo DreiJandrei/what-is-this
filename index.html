@@ -3,27 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 41st Monthsary, Christele!</title>
+    <title>⚠️ CRITICAL ALERT: SYSTEM COMPROMISED</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap');
 
         :root {
-            --primary-color: #ff4d6d;
-            --bg-color: #fff0f3;
-            --text-color: #590d22;
+            --primary-pink: #ff4d6d;
+            --main-bg: #fff0f3;
+            --main-text: #590d22;
+            --virus-green: #00ff33;
+            --error-red: #ff0033;
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #000;
+            color: var(--virus-green);
+            overflow: hidden; /* No scrolling during the scare */
             text-align: center;
-            overflow-x: hidden;
         }
 
-        /* Hero Section */
+        /* --- SCREEN SHAKE ANIMATION FOR THE GLITCH --- */
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(0px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(2px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(2px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        .glitching {
+            animation: shake 0.15s infinite !important;
+            background-color: #1a0003 !important;
+            color: var(--error-red) !important;
+        }
+
+        /* --- VIRUS SCREEN CONTAINER --- */
+        #virus-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            font-family: 'Share Tech Mono', monospace;
+            box-sizing: border-box;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .alert-box {
+            border: 2px solid var(--virus-green);
+            padding: 20px;
+            max-width: 100%;
+            width: 450px;
+            box-shadow: 0 0 15px rgba(0, 255, 51, 0.4);
+            background: #050505;
+            box-sizing: border-box;
+        }
+
+        .glitching .alert-box {
+            border-color: var(--error-red);
+            box-shadow: 0 0 25px rgba(255, 0, 51, 0.8);
+        }
+
+        .alert-header {
+            font-size: 1.8rem;
+            color: var(--error-red);
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .alert-msg {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        #log {
+            text-align: left;
+            width: 100%;
+            height: 140px;
+            overflow-y: hidden;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--virus-green);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .glitching #log {
+            border-color: var(--error-red);
+        }
+
+        .loading-bar {
+            width: 100%;
+            height: 15px;
+            background-color: #111;
+            border: 1px solid var(--virus-green);
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .glitching .loading-bar {
+            border-color: var(--error-red);
+        }
+
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background-color: var(--virus-green);
+            transition: width 0.1s linear;
+        }
+
+        .glitching .loading-progress {
+            background-color: var(--error-red);
+        }
+
+        /* Buttons styling */
+        .btn {
+            background-color: var(--error-red);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-family: 'Share Tech Mono', monospace;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #fix-btn { display: none; }
+        #recover-btn { display: none; background-color: var(--virus-green); color: black; box-shadow: 0 0 15px var(--virus-green); }
+
+        /* --- THE ROMANTIC SITE CONTENT (Initially Hidden) --- */
+        #main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+            overflow: auto; /* Return scrolling */
+        }
+
         .hero {
             min-height: 100vh;
             display: flex;
@@ -37,33 +173,22 @@
         h1 {
             font-family: 'Dancing Script', cursive;
             font-size: 4rem;
-            color: var(--primary-color);
+            color: var(--primary-pink);
             margin-bottom: 10px;
             line-height: 1.2;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            font-weight: 300;
-            max-width: 80%;
-        }
+        .subtitle { font-size: 1.2rem; font-weight: 300; max-width: 80%; color: var(--main-text); margin-bottom: 40px;}
 
-        /* Pulsing Heart */
         .heart {
             font-size: 5rem;
-            color: var(--primary-color);
+            color: var(--primary-pink);
             animation: pulse 1.5s infinite;
             margin-bottom: 30px;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
 
-        /* Letter Section */
         .letter-container {
             background: white;
             max-width: 600px;
@@ -75,17 +200,11 @@
             line-height: 1.8;
             text-align: left;
             box-sizing: border-box;
+            color: var(--main-text);
         }
 
-        .letter-container h2 {
-            font-family: 'Dancing Script', cursive;
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            text-align: center;
-            margin-top: 0;
-        }
+        .letter-container h2 { font-family: 'Dancing Script', cursive; color: var(--primary-pink); font-size: 2.5rem; text-align: center; margin-top: 0; }
 
-        /* Responsive Photo Gallery using Grid */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -97,84 +216,165 @@
             box-sizing: border-box;
         }
 
-        .gallery img {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+        .gallery img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
-        footer {
-            padding: 20px;
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-bottom: 20px;
-        }
+        footer { padding: 20px; font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px; color: var(--main-text);}
 
-        /* Mobile Specific Adjustments */
         @media (max-width: 600px) {
-            h1 { 
-                font-size: 2.8rem; 
-            }
-            .heart {
-                font-size: 4rem;
-            }
-            .subtitle { 
-                font-size: 1rem; 
-                width: 95%;
-            }
-            .letter-container { 
-                width: 90%;
-                padding: 25px 20px; 
-            }
-            .letter-container h2 {
-                font-size: 2rem;
-            }
-            .letter-container p {
-                font-size: 0.95rem;
-            }
-            .gallery { 
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
-                gap: 15px; 
-                padding: 10px; 
-            }
+            h1 { font-size: 2.8rem; }
+            .heart { font-size: 4rem; }
+            .subtitle { font-size: 1rem; width: 95%; }
+            .letter-container { width: 90%; padding: 25px 20px; }
+            .letter-container h2 { font-size: 2rem; }
+            .gallery { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; padding: 10px; }
+            .alert-header { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <div class="heart">❤️</div>
-        <h1>Happy 41st Monthsary, Christele!</h1>
-        <p class="subtitle">41 months of love, laughter, and beautiful memories.</p>
+    <div id="virus-screen">
+        <div class="alert-box">
+            <div class="alert-header">⚠️ SECURITY BREACH</div>
+            <div class="alert-msg">Trojan Dropper detected in kernel. External file extraction ongoing.</div>
+            
+            <div id="log"></div>
+
+            <div class="loading-bar">
+                <div class="loading-progress" id="progress-bar"></div>
+            </div>
+            
+            <button id="fix-btn" class="btn" onclick="triggerGlitchChaos()">CLEAN & FIX DEVICE</button>
+            <button id="recover-btn" class="btn" onclick="revealRealSurprise()">RUN EMERGENCY RESET</button>
+        </div>
     </div>
 
-    <!-- Sweet Letter -->
-    <div class="letter-container">
-        <h2>My Dearest Christele,</h2>
-        <p>Happy 41st Monthsary, my love! I just wanted to prepare a little surprise for you hehe. I want to make it up to you since I won't be able to make it tomorrow, so I hope this little surprise made you smile.</p>
-        <p>I love you so much, my lovey! Thank you for everything and for your endless support! Thank you for your unconditional love, and for being my favorite person in the whole world.</p>
-        <p>I can't wait for all the months and years ahead of us. I love you so much!!</p>
-        <br>
-        <p>Always yours,</p>
-        <p><strong>Drei <3</strong></p>
+    <div id="main-content">
+        <div class="hero">
+            <div class="heart">❤️</div>
+            <h1>Happy 41st Monthsary, Christele!</h1>
+            <p class="subtitle">41 months of love, laughter, and beautiful memories.</p>
+        </div>
+
+        <div class="letter-container">
+            <h2>My Dearest Christele,</h2>
+            <p>Happy 41st Monthsary, my love! I just wanted to prepare a little surprise for you hehe. I want to make it up to you since I won't be able to make it tomorrow, so I hope this little surprise made you smile.</p>
+            <p>I love you so much, my lovey! Thank you for everything and for your endless support! Thank you for your unconditional love, and for being my favorite person in the whole world.</p>
+            <p>I can't wait for all the months and years ahead of us. I love you so much!!</p>
+            <br>
+            <p>Always yours,</p>
+            <p><strong>Franz</strong></p>
+        </div>
+
+        <div class="gallery">
+            <img src="1.jpg" alt="Memory 1">
+            <img src="2.jpg" alt="Memory 2">
+            <img src="3.jpg" alt="Memory 3">
+            <img src="4.jpg" alt="Memory 4">
+        </div>
+
+        <footer>
+            Made with love for our 41st Monthsary ❤️
+        </footer>
     </div>
 
-    <!-- Memories Gallery -->
-    <div class="gallery">
-        <!-- Replace the 'src' links with your actual image paths -->
-        <img src="1.jpg" alt="Memory 1">
-        <img src="2.jpg" alt="Memory 2">
-        <img src="3.jpg" alt="Memory 3">
-        <img src="4.jpg" alt="Memory 4">
-    </div>
+    <script>
+        const initialLogs = [
+            "> Initializing system deep scan...",
+            "> Warning: Unverified root access detected.",
+            "> Corrupting registry elements...",
+            "> Downloading package: Trojan.Generic.D3str0y",
+            "> Hooking keystroke monitors...",
+            "> Threat Level: CRITICAL.",
+            "> System failure imminent. Action required."
+        ];
 
-    <footer>
-        Made with love for our 41st Monthsary ❤️
-    </footer>
+        const glitchLogs = [
+            ">> FATAL ERROR: ACCESS_VIOLATION (0x0000007B)",
+            ">> FAILED TO TERMINATE INFECTION!",
+            ">> OVERHEATING DETECTED IN STORAGE KERNEL",
+            ">> CORRUPTING ALL DEVICE DIRECTORIES...",
+            ">> CORES COMPROMISED: 100%",
+            ">> DECRYPTION KEY MODIFIED.",
+            ">> SYSTEM LOCKDOWN EFFECTIVE IMMEDIATELY."
+        ];
+
+        let currentLogIndex = 0;
+        const logBox = document.getElementById("log");
+        const progBar = document.getElementById("progress-bar");
+        const fixBtn = document.getElementById("fix-btn");
+        const recoverBtn = document.getElementById("recover-btn");
+        const virusView = document.getElementById("virus-screen");
+        const realContent = document.getElementById("main-content");
+
+        // Step 1: Slow stream of basic threat log
+        function printInitialLogs() {
+            if (currentLogIndex < initialLogs.length) {
+                let p = document.createElement("div");
+                p.textContent = initialLogs[currentLogIndex];
+                logBox.appendChild(p);
+                logBox.scrollTop = logBox.scrollHeight;
+                currentLogIndex++;
+                setTimeout(printInitialLogs, 500);
+            } else {
+                fixBtn.style.display = "block"; // Prompts user to click the bait fix button
+            }
+        }
+
+        // Fill up loading bar initially
+        let progWidth = 0;
+        const barRun = setInterval(() => {
+            progWidth += 1.5;
+            progBar.style.width = progWidth + "%";
+            if (progWidth >= 100) clearInterval(barRun);
+        }, 60);
+
+        setTimeout(printInitialLogs, 400);
+
+        // Step 2: The Bait - triggers severe panic loop upon click
+        function triggerGlitchChaos() {
+            fixBtn.style.display = "none";
+            document.body.classList.add("glitching"); // Triggers the intense shake and color inversion via CSS
+            
+            currentLogIndex = 0;
+            logBox.innerHTML = ""; // Wipe past log to drop worse errors
+            
+            function printGlitchLogs() {
+                if (currentLogIndex < glitchLogs.length) {
+                    let p = document.createElement("div");
+                    p.style.color = "var(--error-red)";
+                    p.style.fontWeight = "bold";
+                    p.textContent = glitchLogs[currentLogIndex];
+                    logBox.appendChild(p);
+                    logBox.scrollTop = logBox.scrollHeight;
+                    currentLogIndex++;
+                    setTimeout(printGlitchLogs, 400);
+                } else {
+                    // Stop shaking after logs finish, present final exit choice
+                    document.body.classList.remove("glitching");
+                    document.body.style.backgroundColor = "#0d0000";
+                    logBox.innerHTML += "<div style='color:#fff; text-align:center; margin-top:10px;'>[RECOVERY BACKUP FOUND]</div>";
+                    recoverBtn.style.display = "block";
+                }
+            }
+            printGlitchLogs();
+        }
+
+        // Step 3: Clear the visual state and reveal your actual sweet page layout
+        function revealRealSurprise() {
+            virusView.style.opacity = '0';
+            setTimeout(() => {
+                virusView.style.display = 'none';
+                document.body.style.backgroundColor = 'var(--main-bg)';
+                document.body.style.overflow = 'auto'; // Re-enable normal scroll features
+                
+                realContent.style.display = 'block';
+                setTimeout(() => {
+                    realContent.style.opacity = '1';
+                }, 50);
+            }, 400);
+        }
+    </script>
 
 </body>
 </html>
